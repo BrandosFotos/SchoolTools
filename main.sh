@@ -16,9 +16,9 @@ while [ "$tool" != "0" ]; do
         clear
 
 
-        echo "Device Info:"
         echo "--------------------------------"
-        echo "|" $OSTYPE "|" $HOSTNAME "|" $USER "|" $PWD "|"
+        echo $(curl -s "wttr.in/?format=3")
+        echo "|" $OSTYPE "|" $HOSTNAME "|" $USER "|" $PWD "|" # This looks rough, come back to properly format it
         echo "==================================================="
         echo "Bwhite.dev's Toolset"
         echo "--------------------------------"
@@ -86,6 +86,8 @@ while [ "$tool" != "0" ]; do
 
 
         # The Menu for the toolset
+        echo "--------------------------------"
+        echo $(curl -s "wttr.in/?format=3")
         echo "Bwhite.dev's Toolset for Mac"
         echo "--------------------------------"
         echo "1. Install Common Apps using homebrew"
