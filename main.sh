@@ -111,6 +111,7 @@ while [ "$tool" != "0" ]; do
 
         elif [ "$tool" == "3" ]; then
             echo "Setting up Zshrc"
+            cp zshrc ~/.zshrc
             brew install --cask font-fira-code-nerd-font -y
             brew install starship -y
             starship preset gruvbox-rainbow -o ~/.config/starship.toml --force
