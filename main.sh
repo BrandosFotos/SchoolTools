@@ -26,7 +26,7 @@ while [ "$tool" != "0" ]; do
         echo "1. Activate Windows"
         echo "2. Install Common Apps using chocolatey"
         echo "3. Install Dev Tools"
-        echo "4. copy ssh key to vps"
+        echo "4. Setup Zshrc with Starship"
         echo "0. Exit"
         echo "--------------------------------"
 
@@ -49,6 +49,22 @@ while [ "$tool" != "0" ]; do
         elif [ "$tool" == "3" ]; then
             echo "Installing Dev Tools"
             powershell -ExecutionPolicy Bypass -File "win/devtools.ps1"
+            continue
+
+        # setup zshrc with starship
+        elif [ "$tool" == "4" ]; then
+            echo "Setting up Zshrc with Starship"
+
+            # Install Zshrc and Starship
+            choco install zsh -y
+            choco install starship -y
+
+            # Set up Zshrc
+            echo 'eval "$(starship init zsh)"' >> ~/.zshrc && source ~/.zshrc
+
+            #change default shell to zsh
+            chsh -s $(which zsh)
+
             continue
 
         fi
@@ -74,6 +90,7 @@ while [ "$tool" != "0" ]; do
         echo "--------------------------------"
         echo "1. Install Common Apps using homebrew"
         echo "2. Install Dev Tools"
+        echo "3. Setup Zshrc"
         echo "0. Exit"
         echo "--------------------------------"
 
@@ -84,13 +101,21 @@ while [ "$tool" != "0" ]; do
             echo "Installing Common Apps using homebrew"
             bash mac/commonapps.sh
             continue
-        fi
 
         elif [ "$tool" == "2" ]; then
             echo "Installing Dev Tools"
             bash mac/devtools.sh
             continue
+
+        elif [ "$tool" == "3" ]; then
+            echo "Setting up Zshrc"
+            brew install --cask font-fira-code-nerd-font -y
+            brew install starship -y
+            starship preset gruvbox-rainbow -o ~/.config/starship.toml --force
+            echo 'eval "$(starship init zsh)"' >> ~/.zshrc && source ~/.zshrc
         fi
+    fi
+
 
 
 
