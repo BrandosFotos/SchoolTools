@@ -2,6 +2,7 @@
 
 # Set Some Variables
 current_git_commit=$(git rev-parse HEAD)
+
 weather=$(curl -s "wttr.in/?format=3")
 current_os=$(uname -s)
 
@@ -153,6 +154,20 @@ while [ "$tool" != "0" ]; do
             starship preset gruvbox-rainbow -o ~/.config/starship.toml --force
             echo 'eval "$(starship init zsh)"' >> ~/.zshrc && source ~/.zshrc
         fi
+
+    elif [[ "$os" == "linux" ]]; then
+        echo "--------------------------------"
+        echo "$weather"
+        echo "Bwhite.dev's Toolset for Linux"
+        echo "--------------------------------"
+        echo "0. Exit"
+        echo "1. Install my NVIM setup"
+        echo "--------------------------------"
+        read -p "Enter the number of the tool you want to install: " tool
+
+
+
+
     fi
 
 
